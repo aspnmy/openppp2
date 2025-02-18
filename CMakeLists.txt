@@ -105,20 +105,19 @@ INCLUDE_DIRECTORIES(
     ${PROJECT_SOURCE_DIR}/common/lwip/my
     ${PROJECT_SOURCE_DIR}/common/lwip/include
 
-    /usr/include/boost  # 确保添加这一行
-    /usr/include/jemalloc/include
-    /usr/include/openssl  # 确保添加这一行
+    ${PROJECT_SOURCE_DIR}/boost  # 确保添加这一行
+    ${PROJECT_SOURCE_DIR}/jemalloc/include
+    ${PROJECT_SOURCE_DIR}/openssl  # 确保添加这一行
 
     # ${THIRD_PARTY_LIBRARY_DIR}/curl/include
 )
 
 # Set the third library connection directory to searchs.
 LINK_DIRECTORIES(
-    /usr/lib/x86_64-linux-gnu  # 确保添加这一行
-    /usr/include/boost/stage/lib
-    /usr/include/jemalloc/lib
-    /usr/include/openssl
-    /usr/lib/x86_64-linux-gnu  # 确保添加这一行
+    ${PROJECT_SOURCE_DIR}/openssl  # 确保添加这一行
+    ${PROJECT_SOURCE_DIR}/boost/stage/lib
+    ${PROJECT_SOURCE_DIR}/jemalloc/lib
+
 
     # ${THIRD_PARTY_LIBRARY_DIR}/curl/lib/.libs
 )
@@ -166,18 +165,18 @@ IF(PLATFORM_SYSTEM_DARWIN)
     SET(BUILD_SHARED_LIBS ON) # System
 
     TARGET_LINK_LIBRARIES(${NAME} 
-        /usr/lib/x86_64-linux-gnu/libssl.a 
-        /usr/lib/x86_64-linux-gnu/libcrypto.a 
-        /usr/include/jemalloc/lib/libjemalloc.a
+        ${PROJECT_SOURCE_DIR}/openssl/libssl.a 
+        ${PROJECT_SOURCE_DIR}/openssl/libcrypto.a 
+        ${PROJECT_SOURCE_DIR}/jemalloc/lib/libjemalloc.a
 
         dl
         pthread
 
-        /usr/include/boost/stage/lib/libboost_system.a
-        /usr/include/boost/stage/lib/libboost_coroutine.a 
-        /usr/include/boost/stage/lib/libboost_thread.a 
-        /usr/include/boost/stage/lib/libboost_context.a 
-        /usr/include/boost/stage/lib/libboost_filesystem.a) 
+        ${PROJECT_SOURCE_DIR}/boost/stage/lib/libboost_system.a
+        ${PROJECT_SOURCE_DIR}/boost/stage/lib/libboost_coroutine.a 
+        ${PROJECT_SOURCE_DIR}/boost/stage/lib/libboost_thread.a 
+        ${PROJECT_SOURCE_DIR}/boost/stage/lib/libboost_context.a 
+        ${PROJECT_SOURCE_DIR}/boost/stage/lib/libboost_filesystem.a) 
 ELSEIF(PLATFORM_COMPILER_CLANG)
     SET(BUILD_SHARED_LIBS ON)
 
