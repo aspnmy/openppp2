@@ -95,7 +95,7 @@ ELSE()
 ENDIF()
 
 # Set the tripartite library directorys.
-SET(THIRD_PARTY_LIBRARY_DIR /root/dev)
+SET(THIRD_PARTY_LIBRARY_DIR $ENV{THIRD_PARTY_LIBRARY_DIR})
 
 # Set the compiled header file search directorys.
 INCLUDE_DIRECTORIES(
@@ -105,18 +105,20 @@ INCLUDE_DIRECTORIES(
     ${PROJECT_SOURCE_DIR}/common/lwip/my
     ${PROJECT_SOURCE_DIR}/common/lwip/include
 
-    ${THIRD_PARTY_LIBRARY_DIR}/boost
-    ${THIRD_PARTY_LIBRARY_DIR}/jemalloc/include
-    ${THIRD_PARTY_LIBRARY_DIR}/openssl/include
+    /usr/include/boost  # 确保添加这一行
+    /usr/include/jemalloc/include
+    /usr/include/openssl  # 确保添加这一行
 
     # ${THIRD_PARTY_LIBRARY_DIR}/curl/include
 )
 
 # Set the third library connection directory to searchs.
 LINK_DIRECTORIES(
-    ${THIRD_PARTY_LIBRARY_DIR}/boost/stage/lib
-    ${THIRD_PARTY_LIBRARY_DIR}/jemalloc/lib
-    ${THIRD_PARTY_LIBRARY_DIR}/openssl
+    /usr/lib/x86_64-linux-gnu  # 确保添加这一行
+    /usr/include/boost/stage/lib
+    /usr/include/jemalloc/lib
+    /usr/include/openssl
+    /usr/lib/x86_64-linux-gnu  # 确保添加这一行
 
     # ${THIRD_PARTY_LIBRARY_DIR}/curl/lib/.libs
 )
@@ -164,18 +166,18 @@ IF(PLATFORM_SYSTEM_DARWIN)
     SET(BUILD_SHARED_LIBS ON) # System
 
     TARGET_LINK_LIBRARIES(${NAME} 
-        ${THIRD_PARTY_LIBRARY_DIR}/openssl/libssl.a 
-        ${THIRD_PARTY_LIBRARY_DIR}/openssl/libcrypto.a 
-        ${THIRD_PARTY_LIBRARY_DIR}/jemalloc/lib/libjemalloc.a
+        /usr/lib/x86_64-linux-gnu/libssl.a 
+        /usr/lib/x86_64-linux-gnu/libcrypto.a 
+        /usr/include/jemalloc/lib/libjemalloc.a
 
         dl
         pthread
 
-        ${THIRD_PARTY_LIBRARY_DIR}/boost/stage/lib/libboost_system.a
-        ${THIRD_PARTY_LIBRARY_DIR}/boost/stage/lib/libboost_coroutine.a 
-        ${THIRD_PARTY_LIBRARY_DIR}/boost/stage/lib/libboost_thread.a 
-        ${THIRD_PARTY_LIBRARY_DIR}/boost/stage/lib/libboost_context.a 
-        ${THIRD_PARTY_LIBRARY_DIR}/boost/stage/lib/libboost_filesystem.a) 
+        /usr/include/boost/stage/lib/libboost_system.a
+        /usr/include/boost/stage/lib/libboost_coroutine.a 
+        /usr/include/boost/stage/lib/libboost_thread.a 
+        /usr/include/boost/stage/lib/libboost_context.a 
+        /usr/include/boost/stage/lib/libboost_filesystem.a) 
 ELSEIF(PLATFORM_COMPILER_CLANG)
     SET(BUILD_SHARED_LIBS ON)
 
@@ -194,6 +196,7 @@ ELSEIF(PLATFORM_COMPILER_CLANG)
         libboost_thread.a 
         libboost_context.a 
         libboost_filesystem.a) 
+
 ELSE()
     TARGET_LINK_LIBRARIES(${NAME} 
         libc.a
