@@ -92,12 +92,12 @@ if [ -z "$THIRD_PARTY_LIBRARY_ROOT" ] || [ ! -d "$THIRD_PARTY_LIBRARY_ROOT" ]; t
 fi
 
 ppp_multil_build() {
-    # PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "aarch64" "aarch64-linux-gnu-ld" "aarch64-linux-gnu-gcc" "aarch64-linux-gnu-g++"
-    # PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "armv7l" "arm-linux-gnueabihf-ld" "arm-linux-gnueabihf-gcc" "arm-linux-gnueabihf-g++"
-    # PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "mipsel" "mipsel-linux-gnu-ld" "mipsel-linux-gnu-gcc" "mipsel-linux-gnu-g++"
-    # PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "ppc64el" "powerpc64le-linux-gnu-ld" "powerpc64le-linux-gnu-gcc" "powerpc64le-linux-gnu-g++"
-    # PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "riscv64" "riscv64-linux-gnu-ld" "riscv64-linux-gnu-gcc" "riscv64-linux-gnu-g++"
-    # PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "s390x" "s390x-linux-gnu-ld" "s390x-linux-gnu-gcc" "s390x-linux-gnu-g++"
+    PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "aarch64" "aarch64-linux-gnu-ld" "aarch64-linux-gnu-gcc" "aarch64-linux-gnu-g++"
+    PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "armv7l" "arm-linux-gnueabihf-ld" "arm-linux-gnueabihf-gcc" "arm-linux-gnueabihf-g++"
+    PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "mipsel" "mipsel-linux-gnu-ld" "mipsel-linux-gnu-gcc" "mipsel-linux-gnu-g++"
+    PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "ppc64el" "powerpc64le-linux-gnu-ld" "powerpc64le-linux-gnu-gcc" "powerpc64le-linux-gnu-g++"
+    PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "riscv64" "riscv64-linux-gnu-ld" "riscv64-linux-gnu-gcc" "riscv64-linux-gnu-g++"
+    PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "s390x" "s390x-linux-gnu-ld" "s390x-linux-gnu-gcc" "s390x-linux-gnu-g++"
     PPP_build "$THIRD_PARTY_LIBRARY_ROOT" "amd64" "ld" "gcc" "g++"
 
 }
